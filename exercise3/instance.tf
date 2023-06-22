@@ -1,5 +1,5 @@
 resource "aws_key_pair" "jay-key" {
-  key_name = "jaykey"
+  key_name   = "jaykey"
   public_key = file("jaykey.pub")
 }
 
@@ -14,20 +14,20 @@ resource "aws_instance" "jay_inst" {
     Name = "First Instance"
   }
   provisioner "file" {
-    source = "web.sh"
+    source      = "web.sh"
     destination = "/tmp/web.sh"
   }
 
   provisioner "remote-exec" {
-  inline = [
-    "chmod u+x /tmp/web.sh"
-    "sudo /tmp/web.sh"
-  ]
+    inline = [
+      "chmod u+x /tmp/web.sh",
+      "sudo /tmp/web.sh"
+    ]
   }
-  
+
   connection {
-    user = var.user
+    user        = var.USER
     private_key = file("jaykey")
-    host = self.public_ip
+    host        = self.public_ip
   }
 }

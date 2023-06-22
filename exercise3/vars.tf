@@ -7,13 +7,13 @@ variable "ZONE1" {
 
 variable "AMIS" {
   type = map(any)
-  default =  {
+  default = {
     us-east-1 = "ami-053b0d53c279acc90"
     us-east-2 = "ami-0e820afa569e84cc1"
   }
 }
 
-variable USER {
-default = "ubuntu"
+variable "USER" {
+  default = "ubuntu"
 
 }
