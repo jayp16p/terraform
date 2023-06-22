@@ -1,0 +1,187 @@
+- its a IAAC tool
+- We can define Infrastructure state with terraform
+- Terraform automates infra itself.
+- it works with automation softwares like ansible after infra is setup & ready
+- ends with .tf (files)
+
+- run terraform init in path
+- see something like (Jay Patel@JAYPATEL MINGW64 ~/temp/terraform/terraform/terraform-scripts/exercise1 (main)
+$ terraform.exe init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding latest version of hashicorp/aws...
+- Installing hashicorp/aws v5.4.0...
+- Installed hashicorp/aws v5.4.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+)
+
+- run terraform validate to check if everything is fine (
+    Jay Patel@JAYPATEL MINGW64 ~/temp/terraform/terraform/terraform-scripts/exercise1 (main)
+$ terraform validate
+Success! The configuration is valid.
+)
+
+- run terraform fmt to beautify code to cannonical format style
+
+- terraform plan shows what changes will be made but NOT EXECUTE(
+Terraform will perform the following actions:
+
+  # aws_instance.intro will be created
+  + resource "aws_instance" "intro" {
+      + ami                                  = "ami-053b0d53c279acc90"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = "us-east-1a"
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_lifecycle                   = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "ansiblelabs"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + spot_instance_request_id             = (known after apply)
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "Name" = "First Instance"
+        }
+      + tags_all                             = {
+          + "Name" = "First Instance"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = [
+          + "sg-0dc8e60c685dffb8c",
+        ]
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+)
+
+- run terraform apply to execute(
+   Jay Patel@JAYPATEL MINGW64 ~/temp/terraform/terraform/terraform-scripts/exercise1 (main)
+$ terraform.exe apply
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.intro will be created
+  + resource "aws_instance" "intro" {
+      + ami                                  = "ami-053b0d53c279acc90"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = "us-east-1a"
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_lifecycle                   = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "ansiblelabs"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + spot_instance_request_id             = (known after apply)
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "Name" = "First Instance"
+        }
+      + tags_all                             = {
+          + "Name" = "First Instance"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = [
+          + "sg-0dc8e60c685dffb8c",
+        ]
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.intro: Creating...
+aws_instance.intro: Still creating... [10s elapsed]
+aws_instance.intro: Still creating... [20s elapsed]
+aws_instance.intro: Creation complete after 25s [id=i-0311254a979a21dda]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed. 
+)
+
+--terraform destroy to delete (
+    Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+aws_instance.intro: Destroying... [id=i-0311254a979a21dda]
+aws_instance.intro: Still destroying... [id=i-0311254a979a21dda, 10s elapsed]
+aws_instance.intro: Still destroying... [id=i-0311254a979a21dda, 20s elapsed]
+aws_instance.intro: Destruction complete after 30s
+
+Destroy complete! Resources: 1 destroyed.
+
+)
